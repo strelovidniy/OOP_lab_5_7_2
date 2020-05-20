@@ -8,7 +8,7 @@ namespace OOP_lab_5_7_2
 
         static void Main(string[] args)
         {
-            Reception.Read();
+            Hospital.Read();
         }
     }
 }

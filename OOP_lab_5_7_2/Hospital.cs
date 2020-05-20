@@ -5,7 +5,7 @@ namespace OOP_lab_5_7_2
 {
     class Hospital : Reception
     {
-        public static void Add()
+        private static void Add()
         {
             StreamWriter file = new StreamWriter("base.txt", true);
 
@@ -28,7 +28,7 @@ namespace OOP_lab_5_7_2
             file.WriteLine(Console.ReadLine());
 
         Retry:
-            Console.Write("Кiлькiсть вiдвiдувачiв:");
+            Console.Write("Кiлькiсть вiдвiдувачiв: ");
 
             try
             {
@@ -46,7 +46,7 @@ namespace OOP_lab_5_7_2
             ReadBase();
         }
 
-        public static void Remove()
+        private static void Remove()
         {
             Console.WriteLine();
 
@@ -92,7 +92,7 @@ namespace OOP_lab_5_7_2
             ReadBase();
         }
 
-        public static void Edit()
+        private static void Edit()
         {
             Console.WriteLine();
 
@@ -142,7 +142,7 @@ namespace OOP_lab_5_7_2
                     file.WriteLine(Console.ReadLine());
 
                 Retry:
-                    Console.Write("Кiлькiсть вiдвiдувачiв:");
+                    Console.Write("Кiлькiсть вiдвiдувачiв: ");
 
                     try
                     {
@@ -172,12 +172,12 @@ namespace OOP_lab_5_7_2
             ReadBase();
         }
 
-        public static void InitialiseBase(int n)
+        private static void InitialiseBase(int n)
         {
             Program.doctors = new Reception[n];
         }
 
-        public static void Write()
+        private static void Write()
         {
             const string Format = "{0, -20} {1, -25} {2, -10} {3, -10} {4, -25}";
 
@@ -195,7 +195,7 @@ namespace OOP_lab_5_7_2
             ReadKey();
         }
 
-        public static void ReadBase()
+        private static void ReadBase()
         {
             StreamReader file = new StreamReader("base.txt");
 
@@ -211,7 +211,7 @@ namespace OOP_lab_5_7_2
             file.Close();
         }
 
-        public static void ReadKey()
+        private static void ReadKey()
         {
 
         Start:
