@@ -5,6 +5,8 @@ namespace OOP_lab_5_7_2
 {
     class Hospital : Reception
     {
+        const string Format = "{0, -20} {1, -25} {2, -10} {3, -10} {4, -25}";
+
         private static void Add()
         {
             StreamWriter file = new StreamWriter("base.txt", true);
@@ -179,8 +181,6 @@ namespace OOP_lab_5_7_2
 
         private static void Write()
         {
-            const string Format = "{0, -20} {1, -25} {2, -10} {3, -10} {4, -25}";
-
             Console.WriteLine(Format, "Прiзище", "Фах", "День", "Змiна", "Кiлькiсть вiдвiдувачiв");
 
             for (int i = 0; i < Program.doctors.Length; ++i)
@@ -220,6 +220,9 @@ namespace OOP_lab_5_7_2
             Console.WriteLine("Редагування записiв: E");
             Console.WriteLine("Знищення записiв: -");
             Console.WriteLine("Виведення записiв: Enter");
+            Console.WriteLine("Загальна кiлькiсть вiдвiдувачiв: A");
+            Console.WriteLine("Прийом з мiнiмальною кiлькiстю вiдвiдувачiв: M");
+            Console.WriteLine("Довжина прiзвища: L");
             Console.WriteLine("Вихiд: Esc");
 
             ConsoleKey key = Console.ReadKey().Key;
@@ -232,6 +235,18 @@ namespace OOP_lab_5_7_2
 
                 case ConsoleKey.E:
                     Edit();
+                    goto Start;
+
+                case ConsoleKey.A:
+                    Sum();
+                    goto Start;
+
+                case ConsoleKey.M:
+                    Minimum();
+                    goto Start;
+
+                case ConsoleKey.L:
+                    Length();
                     goto Start;
 
                 case ConsoleKey.OemMinus:
@@ -249,6 +264,55 @@ namespace OOP_lab_5_7_2
                     Console.WriteLine();
                     goto Start;
             }
+        }
+
+
+
+        public static void Sum()
+        {
+            int sum = 0;
+
+            for (int i = 0; i < Program.doctors.Length; ++i)
+            {
+                sum += Program.doctors[i].VisitorsCount;
+            }
+
+            Console.WriteLine("\nЗагальна кiлькiсть вiдвiдувачiв: {0}.", sum);
+        }
+
+        public static void Minimum()
+        {
+            int minIndex = 0;
+
+            for (int i = 0; i < Program.doctors.Length; ++i)
+            {
+                if (Program.doctors[minIndex].VisitorsCount >= Program.doctors[i].VisitorsCount)
+                {
+                    minIndex = i;
+                }
+            }
+
+            Console.WriteLine("Загальна кiлькiсть вiдвiдувачiв:");
+            Console.WriteLine(Format, "Прiзище", "Фах", "День", "Змiна", "Кiлькiсть вiдвiдувачiв");
+
+            for (int i = 0; i < Program.doctors.Length; ++i)
+            {
+                if (Program.doctors[minIndex].VisitorsCount == Program.doctors[i].VisitorsCount)
+                {
+                    Console.WriteLine(Format, Program.doctors[i].Surename, Program.doctors[i].Profession, Program.doctors[i].Day, Program.doctors[i].Shift, Program.doctors[i].VisitorsCount);
+                }
+            }
+        }
+
+        public static void Length()
+        {
+            Console.WriteLine();
+
+            Write();
+
+            Console.Write("Порядковий номер запису для визначення довжини прiзвища лiкаря: ");
+
+            Console.WriteLine(new Reception().Length(int.Parse(Console.ReadLine())));
         }
     }
 }
